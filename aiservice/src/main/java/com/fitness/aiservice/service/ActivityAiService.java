@@ -6,15 +6,12 @@ import com.fitness.aiservice.model.Activity;
 import com.fitness.aiservice.model.Recommendation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.support.SimpleTriggerContext;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.random.RandomGenerator;
 
 @Service
 @Slf4j
@@ -63,7 +60,6 @@ public class ActivityAiService {
 
             List<String> safety = extractSafetyGuidelines(analysisJson.path("safety"));
 
-
             return Recommendation.builder()
                     .activityId(activity.getId())
                     .userId(activity.getUserId())
@@ -74,6 +70,7 @@ public class ActivityAiService {
                     .safety(safety)
                     .createdAt(LocalDateTime.now())
                     .build();
+
 
 
         }catch (Exception e){
@@ -102,7 +99,7 @@ public class ActivityAiService {
     private List<String> extractSafetyGuidelines(JsonNode safetyNode) {
         List<String> safety=new ArrayList<>();
         if(safetyNode.isArray()){
-            safetyNode.forEach(item -> safety.add(item.asText());
+            safetyNode.forEach(item -> safety.add(item.asText()));
         }
         return safety.isEmpty() ?
                 Collections.singletonList("Follow general safety guidelines") :
