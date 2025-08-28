@@ -39,6 +39,7 @@ public class ActivityAiService {
                     .path("parts")
                     .get(0)
                     .path("text");
+
             String jsonContent= textNode.asText()
                     .replaceAll("```json\\n","")
                     .replaceAll("\\n```","")

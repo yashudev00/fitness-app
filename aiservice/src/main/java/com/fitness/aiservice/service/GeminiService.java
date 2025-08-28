@@ -29,6 +29,7 @@ public class GeminiService {
                         })
                 }
         );
+
         String response= webClient.post()
                 .uri(geminiApiUrl + geminiApiKey)
                 .header("Content-Type", "application/json")
@@ -36,6 +37,7 @@ public class GeminiService {
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
+
         return response;
     }
 }
