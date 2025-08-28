@@ -17,7 +17,6 @@ public class UserService {
     private UserRepository repository;
 
     public UserResponse register(@Valid RegisterRequest request) {
-
         if(repository.existsByEmail(request.getEmail())){
             User exitingUser= repository.findByEmail(request.getEmail());
             UserResponse userResponse=new UserResponse();
@@ -36,6 +35,7 @@ public class UserService {
         User user=new User();
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
+        user.setKeycloakId(request.getKeycloakId());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
 
